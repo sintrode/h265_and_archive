@@ -20,6 +20,10 @@ set "ffmpeg_opts=-fflags +genpts -c:v libx265 -preset slow -pix_fmt yuv422p10le 
 set "sevenzip=REPLACE_ME_WITH_PATH_TO_7Z.EXE"
 set "sevenzip_opts=a -mx9 -mmt32 -ms256m"
 
+if "%~1"=="" goto :usage
+if "%~1"=="/?" goto :usage
+if not exist "%~1" goto :usage
+
 for %%A in ("%ffmpeg%" "%sevenzip%") do (
 	if not exist "%%A" (
 		echo %%~nxA not found. Exiting.
@@ -33,3 +37,14 @@ set "output_file=%~dpn1.10bit.x265.mkv"
 "%sevenzip%" %sevenzip_opts% "%output_file%.xz" "%output_file%"
 del "%output_file%"
 del "%input_file%"
+exit /b
+
+::------------------------------------------------------------------------------
+:: Displays the usage text
+::
+:: Arguments: None
+:: Returns:   None
+::------------------------------------------------------------------------------
+:usage
+echo USAGE: %~nx0 ^<input_file^>
+exit /b
