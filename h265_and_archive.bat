@@ -16,7 +16,7 @@
 
 :: Constants
 set "ffmpeg=REPLACE_ME_WITH_PATH_TO_FFMPEG.EXE"
-set "ffmpeg_opts=-fflags +genpts -c:v libx265 -preset slow -pix_fmt yuv422p10le -x265-params pools=4 -c:a copy"
+set "ffmpeg_opts=-fflags +genpts -c:v libx265 -preset fast -crf 28 -pix_fmt yuv422p10le -x265-params pools=4 -c:a copy"
 set "sevenzip=REPLACE_ME_WITH_PATH_TO_7Z.EXE"
 set "sevenzip_opts=a -mx9 -mmt32 -ms256m"
 
